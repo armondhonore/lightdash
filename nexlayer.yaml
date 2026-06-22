@@ -1,0 +1,28 @@
+application:
+  name: lightdash
+  pods:
+  - name: app
+    image: lightdash/lightdash:latest
+    path: /
+    servicePorts:
+    - 8080
+    vars:
+      DATABASE_HOST: postgres.pod
+      DATABASE_PORT: "5432"
+      DATABASE_NAME: lightdash
+      DATABASE_USER: lightdash
+      DATABASE_PASSWORD: lightdash
+      SECRET: "a1b2c3d4e5f6a1b2c3d4"
+      SITE_URL: "https://relaxed-weasel-lightdash.cloud.nexlayer.ai"
+  - name: postgres
+    image: postgres:16-alpine
+    servicePorts:
+    - 5432
+    vars:
+      POSTGRES_DB: lightdash
+      POSTGRES_USER: lightdash
+      POSTGRES_PASSWORD: lightdash
+    volumes:
+    - name: lightdash-db
+      mountPath: /var/lib/postgresql/data
+      size: 10Gi
