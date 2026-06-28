@@ -11,12 +11,12 @@ application:
       PGPORT: "5432"
       PGDATABASE: lightdash
       PGUSER: lightdash
-      PGPASSWORD: lightdash
+      PGPASSWORD: ${POSTGRES_PASSWORD}
       DATABASE_HOST: lightdash-postgres-service
       DATABASE_PORT: "5432"
       DATABASE_NAME: lightdash
       DATABASE_USER: lightdash
-      DATABASE_PASSWORD: lightdash
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
       LIGHTDASH_SECRET: "a1b2c3d4e5f6a1b2c3d4"
       SECRET: "a1b2c3d4e5f6a1b2c3d4"
       PORT: "8080"
@@ -35,7 +35,7 @@ application:
     vars:
       POSTGRES_DB: lightdash
       POSTGRES_USER: lightdash
-      POSTGRES_PASSWORD: lightdash
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
     - name: lightdash-db
       mountPath: /var/lib/postgresql/data
