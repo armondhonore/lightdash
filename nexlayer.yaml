@@ -7,13 +7,21 @@ application:
     servicePorts:
     - 8080
     vars:
-      DATABASE_HOST: postgres.pod
+      PGHOST: lightdash-postgres-service
+      PGPORT: "5432"
+      PGDATABASE: lightdash
+      PGUSER: lightdash
+      PGPASSWORD: lightdash
+      DATABASE_HOST: lightdash-postgres-service
       DATABASE_PORT: "5432"
       DATABASE_NAME: lightdash
       DATABASE_USER: lightdash
       DATABASE_PASSWORD: lightdash
+      LIGHTDASH_SECRET: "a1b2c3d4e5f6a1b2c3d4"
       SECRET: "a1b2c3d4e5f6a1b2c3d4"
+      PORT: "8080"
       SITE_URL: "https://relaxed-weasel-lightdash.cloud.nexlayer.ai"
+      TRUST_PROXY: "true"
   - name: postgres
     image: postgres:16-alpine
     servicePorts:
