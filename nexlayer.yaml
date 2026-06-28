@@ -42,7 +42,7 @@ application:
       size: 10Gi
   - name: minio
     image: minio/minio:latest
-    command: sh -c "mkdir -p /data/lightdash && exec minio server /data --console-address :9001"
+    command: server /data --console-address :9001
     servicePorts:
     - 9000
     vars:
