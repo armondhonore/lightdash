@@ -22,6 +22,12 @@ application:
       PORT: "8080"
       SITE_URL: "https://relaxed-weasel-lightdash.cloud.nexlayer.ai"
       TRUST_PROXY: "true"
+      S3_ENDPOINT: "http://lightdash-minio-service:9000"
+      S3_BUCKET: "lightdash"
+      S3_REGION: "us-east-1"
+      S3_ACCESS_KEY: "lightdash"
+      S3_SECRET_KEY: "lightdash123"
+      S3_FORCE_PATH_STYLE: "true"
   - name: postgres
     image: postgres:16-alpine
     servicePorts:
@@ -33,4 +39,16 @@ application:
     volumes:
     - name: lightdash-db
       mountPath: /var/lib/postgresql/data
+      size: 10Gi
+  - name: minio
+    image: bitnami/minio:latest
+    servicePorts:
+    - 9000
+    vars:
+      MINIO_ROOT_USER: "lightdash"
+      MINIO_ROOT_PASSWORD: "lightdash123"
+      MINIO_DEFAULT_BUCKETS: "lightdash"
+    volumes:
+    - name: lightdash-minio
+      mountPath: /bitnami/minio/data
       size: 10Gi
