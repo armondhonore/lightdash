@@ -41,14 +41,14 @@ application:
       mountPath: /var/lib/postgresql/data
       size: 10Gi
   - name: minio
-    image: bitnami/minio:latest
+    image: minio/minio:latest
+    command: sh -c "mkdir -p /data/lightdash && exec minio server /data --console-address :9001"
     servicePorts:
     - 9000
     vars:
       MINIO_ROOT_USER: "lightdash"
       MINIO_ROOT_PASSWORD: "lightdash123"
-      MINIO_DEFAULT_BUCKETS: "lightdash"
     volumes:
     - name: lightdash-minio
-      mountPath: /bitnami/minio/data
+      mountPath: /data
       size: 10Gi
