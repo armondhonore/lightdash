@@ -2,7 +2,7 @@ application:
   name: lightdash
   pods:
   - name: app
-    image: lightdash/lightdash:latest
+    image: mirror.gcr.io/lightdash/lightdash:latest
     path: /
     servicePorts:
     - 8080
@@ -23,7 +23,7 @@ application:
       SITE_URL: "https://relaxed-weasel-lightdash.cloud.nexlayer.ai"
       TRUST_PROXY: "true"
   - name: postgres
-    image: postgres:16-alpine
+    image: mirror.gcr.io/library/postgres:16-alpine
     servicePorts:
     - 5432
     vars:
