@@ -2,7 +2,7 @@ application:
   name: lightdash
   pods:
   - name: app
-    image: lightdash/lightdash:latest
+    image: mirror.gcr.io/lightdash/lightdash:latest
     path: /
     servicePorts:
     - 8080
@@ -29,7 +29,7 @@ application:
       S3_SECRET_KEY: "lightdash123"
       S3_FORCE_PATH_STYLE: "true"
   - name: postgres
-    image: postgres:16-alpine
+    image: mirror.gcr.io/library/postgres:16-alpine
     servicePorts:
     - 5432
     vars:
@@ -41,7 +41,7 @@ application:
       mountPath: /var/lib/postgresql/data
       size: 10Gi
   - name: minio
-    image: minio/minio:latest
+    image: mirror.gcr.io/minio/minio:latest
     command: server /data --console-address :9001
     servicePorts:
     - 9000
